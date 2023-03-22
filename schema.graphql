@@ -16,14 +16,24 @@ extend schema
     description: "send urgent issues to [#oncall](https://yourteam.slack.com/archives/oncall)."
   )
   @link(
-    url: "https://specs.apollo.dev/federation/v2.2",
+    url: "https://specs.apollo.dev/federation/v2.2"
     import: [
-      "@key", "@extends", "@shareable", "@inaccessible", "@override", "@external", "@provides", "@requires", "@tag", "@composeDirective"
+      "@key"
+      "@extends"
+      "@shareable"
+      "@inaccessible"
+      "@override"
+      "@external"
+      "@provides"
+      "@requires"
+      "@tag"
+      "@composeDirective"
     ]
   )
 
 type Query {
   thing(id: ID!): Thing
+  catFact: CatFact
 }
 
 type Mutation {
@@ -33,6 +43,10 @@ type Mutation {
 type Thing @key(fields: "id") {
   id: ID!
   name: String
+}
+
+type CatFact {
+  fact: String!
 }
 
 input CreateThing {

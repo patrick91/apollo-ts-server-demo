@@ -16,6 +16,11 @@ export type Scalars = {
   _FieldSet: any;
 };
 
+export type CatFact = {
+  __typename?: 'CatFact';
+  fact: Scalars['String'];
+};
+
 export type CreateThing = {
   id: Scalars['ID'];
   name?: InputMaybe<Scalars['String']>;
@@ -33,6 +38,7 @@ export type MutationCreateThingArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  catFact?: Maybe<CatFact>;
   thing?: Maybe<Thing>;
 };
 
@@ -129,9 +135,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
+  CatFact: ResolverTypeWrapper<CatFact>;
+  String: ResolverTypeWrapper<Scalars['String']>;
   CreateThing: CreateThing;
   ID: ResolverTypeWrapper<Scalars['ID']>;
-  String: ResolverTypeWrapper<Scalars['String']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Thing: ResolverTypeWrapper<Thing>;
@@ -140,9 +147,10 @@ export type ResolversTypes = ResolversObject<{
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
+  CatFact: CatFact;
+  String: Scalars['String'];
   CreateThing: CreateThing;
   ID: Scalars['ID'];
-  String: Scalars['String'];
   Mutation: {};
   Query: {};
   Thing: Thing;
@@ -157,11 +165,17 @@ export type ContactDirectiveArgs = {
 
 export type ContactDirectiveResolver<Result, Parent, ContextType = DataSourceContext, Args = ContactDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type CatFactResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['CatFact'] = ResolversParentTypes['CatFact']> = ResolversObject<{
+  fact?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type MutationResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   createThing?: Resolver<Maybe<ResolversTypes['Thing']>, ParentType, ContextType, RequireFields<MutationCreateThingArgs, 'thing'>>;
 }>;
 
 export type QueryResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  catFact?: Resolver<Maybe<ResolversTypes['CatFact']>, ParentType, ContextType>;
   thing?: Resolver<Maybe<ResolversTypes['Thing']>, ParentType, ContextType, RequireFields<QueryThingArgs, 'id'>>;
 }>;
 
@@ -173,6 +187,7 @@ export type ThingResolvers<ContextType = DataSourceContext, ParentType extends R
 }>;
 
 export type Resolvers<ContextType = DataSourceContext> = ResolversObject<{
+  CatFact?: CatFactResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Thing?: ThingResolvers<ContextType>;
