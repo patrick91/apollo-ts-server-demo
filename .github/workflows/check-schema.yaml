@@ -3,7 +3,6 @@ on: push
 
 jobs:
   get_subgraph_name:
-    if: false
     uses: ./.github/workflows/apollo.yaml
 
   check_schema:

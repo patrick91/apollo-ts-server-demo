@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 jobs:
   get_subgraph_name:
-    if: false
     uses: ./.github/workflows/apollo.yaml
 
   deploy:
